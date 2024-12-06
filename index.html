@@ -1,29 +1,4 @@
 <!DOCTYPE html>
-<script>
-    // Function to calculate and display word count for a specific section
-    function displayWordCount(sectionId) {
-        // Get the section element by ID
-        const sectionElement = document.getElementById(sectionId);
-        if (!sectionElement) {
-            console.warn(`Section with ID '${sectionId}' not found.`);
-            return 0; // Return 0 if the section doesn't exist
-        }
-        // Get the text content and normalize whitespace
-        const text = sectionElement.textContent.replace(/\s+/g, " ").trim();
-        // Split into words and count
-        return text ? text.split(" ").length : 0;
-    }
-
-    // Function to calculate and display total word count
-    function displayTotalWordCount() {
-        const abstractCount = displayWordCount("Abstract");
-        const mainCount = displayWordCount("Main");
-        const gravitationalCount = displayWordCount("Gravitational Interactions");
-        const findingsCount = displayWordCount("Key Research Findings");
-        const referencesCount = displayWordCount("References");
-
-        // Calculate total word count
-        const totalWordCount = abstractCount + mainCount + gravitationalCount + findingsCount + referencesCount;
 
 <!-- //////////////////////////////////////////////////////////////////////////////// -->
   <!-- ////////////////////////////// Adding last update ////////////////////////////// -->
