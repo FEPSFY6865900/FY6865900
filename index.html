@@ -49,46 +49,6 @@
     window.onload = getLastUpdatedTime;
 </script>
 
-
- <!-- //////////////////////////////////////////////////////////////////////////////// -->
-  <!-- ////////////////////////////// Word count function ////////////////////////////// -->
-  <!-- //////////////////////////////////////////////////////////////////////////////// -->
-<!-- Placeholder for total word count -->
-<p id="totalWordCount"></p>
-<hr>
-<script>
-  // Function to calculate and display word count for a specified section
-  function displayWordCount(sectionId, outputId) {
-    // Get the text content from the specified section
-    const text = document.getElementById(sectionId).textContent;
-    // Split text into words based on spaces and filter out any empty strings
-    const wordArray = text.trim().split(/\s+/);
-    // Count the words
-    const wordCount = wordArray.length;
-    // Return the word count for summing purposes
-    return wordCount;
-  }
-  // Function to calculate and display total word count from selected sections
-  function displayTotalWordCount() {
-    // Calculate word count for each section and accumulate the total
-    const AbstractCount = displayWordCount("Abstract");
-    const MainCount = displayWordCount("Main");
-    const GravitationalCount = displayWordCount("Gravitational Interactions");
-    const KeyCount = displayWordCount("Key Research Findings");
-    const ReferencesCount = displayWordCount("References");
-    // Calculate the sum of all selected sections
-    const totalWordCount = AbstractCount + MainCount + GravitationalCount + KeyCount + ReferencesCount ;
-    // Display the total word count
-    document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
-  }
-  // Run the function for specific sections and display total count when the page loads
-  window.onload = displayTotalWordCount;
-</script>
-
-
-
-
-
 <html>
   <head>
     <img src="WebBanner2023.png" alt="Banner" width="600" height="100">
@@ -271,13 +231,6 @@
     </video>
 
       
-  
-      
-
-  
-
-
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <style>
