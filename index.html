@@ -1,5 +1,94 @@
 <!DOCTYPE html>
 
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////// Adding last update ////////////////////////////// -->
+  <!-- //////////////////////////////////////////////////////////////////////////////// -->
+    <!-- Last commit time display -->
+<div id="last-updated">Loading last update time...</div>
+<!-- Verify Button -->
+<button onclick="verifyLastUpdatedTime()" style="display: block; margin: 10px auto; padding: 8px 16px;">
+    Verify Last Modified Time
+</button>
+<script>
+    async function getLastUpdatedTime() {
+        const username = 'FEPSFY6865900';
+        const repo = 'FY6865900';
+       
+        const url = `https://api.github.com/repos/${username}/${repo}/commits`;
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json',
+                }
+            });
+            if (!response.ok) {
+                throw new Error(`Error fetching data: ${response.status} - ${response.statusText}`);
+            }
+            const commits = await response.json();
+            if (commits && commits.length > 0) {
+                const lastCommitDate = new Date(commits[0].commit.committer.date);
+               
+                // Displaying the time on load
+                document.getElementById('last-updated').innerText = `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
+            } else {
+                document.getElementById('last-updated').innerText = 'No commits found in the repository.';
+            }
+        } catch (error) {
+            console.error('Error fetching the last updated time:', error);
+            document.getElementById('last-updated').innerText = 'Error fetching update time. Please check the repository details.';
+        }
+    }
+    // Function to verify the last update time by re-fetching it from the API
+    async function verifyLastUpdatedTime() {
+        document.getElementById('last-updated').innerText = 'Verifying...';
+        await getLastUpdatedTime();
+        alert("Last modified time has been successfully verified from GitHub API.");
+    }
+    // Initial load to display the time on page load
+    window.onload = getLastUpdatedTime;
+</script>
+
+
+ <!-- //////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////// Word count function ////////////////////////////// -->
+  <!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- Placeholder for total word count -->
+<p id="totalWordCount"></p>
+<hr>
+<script>
+  // Function to calculate and display word count for a specified section
+  function displayWordCount(sectionId, outputId) {
+    // Get the text content from the specified section
+    const text = document.getElementById(sectionId).textContent;
+    // Split text into words based on spaces and filter out any empty strings
+    const wordArray = text.trim().split(/\s+/);
+    // Count the words
+    const wordCount = wordArray.length;
+    // Return the word count for summing purposes
+    return wordCount;
+  }
+  // Function to calculate and display total word count from selected sections
+  function displayTotalWordCount() {
+    // Calculate word count for each section and accumulate the total
+    const AbstractCount = displayWordCount("Abstract");
+    const MainCount = displayWordCount("Main");
+    const GravitationalCount = displayWordCount("Gravitational Interactions");
+    const KeyCount = displayWordCount("Key Research Findings");
+    const ReferencesCount = displayWordCount("References");
+    // Calculate the sum of all selected sections
+    const totalWordCount = AbstractCount + MainCount + GravitationalCount + KeyCount + ReferencesCount ;
+    // Display the total word count
+    document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
+  }
+  // Run the function for specific sections and display total count when the page loads
+  window.onload = displayTotalWordCount;
+</script>
+
+
+
+
+
 <html>
   <head>
     <img src="WebBanner2023.png" alt="Banner" width="600" height="100">
@@ -58,7 +147,7 @@
   
     <p class="ex1">
       <h3 id="Abstract">Abstract</h3>
-    <pre>
+    <pre id=Abstract>
       Milancovich Cycles (named after the Serbian astronomer Milutin Milancovic), is a theory how the earth's
       orbit and tilt can influence climate changes over long periods of time. Whilst Milankovich cycles are mainly
       affected by the Sun and Moon's gravitational forces, other planets cannot be ignored Planet's such as
@@ -70,7 +159,7 @@
   
     <p class="ex1">
       <h3 id="Main">Main</h3>
-    <pre>
+    <pre id=Main>
       Milankovitch cycles help us a lot to understand long-term climate changes. There are three factors that 
       influence these cycles drastically, these are eccentricity, axial tilt, and precession. Each of these 
       factors helps explain how the cycles affect the distribution and intensity of solar radiation that Earth 
@@ -95,7 +184,7 @@
 
     <p class="ex1">
       <h3 id="Gravitational Interactions">Gravitational Interactions</h3>
-    <pre>
+    <pre id=Gravitational Interactions>
       Milankovitch cycles are mainly affected by the gravitational pull of the Sun and Moon, but the gravity 
       from other planets, especially the gas giants like Jupiter and Saturn, also has a big impact on these 
       cycles. 
@@ -127,7 +216,7 @@
   </p>
     <p class="ex1">
       <h3 id="Key Research Findings">Key Research Findings</h3>
-    <pre>
+    <pre id=Key Reaseach Findings>
       Multiple studies have shown strong evidence that other planets impact Earth's Milankovitch cycles. 
       Laskar and Robutel (1993) conducted a study on the chaotic movements within the solar system, 
       which showed that gravitational interactions between planets can cause significant changes in 
@@ -163,7 +252,7 @@
 </p>
     <p class="ex1">
       <h3 id="References">References</h3>
-    <pre>
+    <pre id=References>
       Laskar, J. and Robutel, P. (1993). "The Chaotic Nature of the Inner Solar System," Nature, 361(6410), pp. 608–612.
 
       Laskar, J. (2004). "Long-term Stability of the Solar System," Celestial Mechanics and Dynamical Astronomy, 79(4), pp. 241–285.
